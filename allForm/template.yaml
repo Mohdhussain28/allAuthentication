@@ -4,7 +4,6 @@ Description: >
   allForm
   Sample SAM Template for allForm
 
-# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
   Function:
     Timeout: 3
@@ -12,7 +11,7 @@ Globals:
 
 Resources:
   SignUpFunction:
-    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Type: AWS::Serverless::Function
     Properties:
       CodeUri: all-functions/signup
       Handler: signup.lambdaHandler
@@ -26,13 +25,13 @@ Resources:
           COGNITO_REGION: ap-south-1
       Events:
         ApiEvent:
-          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Type: Api
           Properties:
             Path: /signup
             Method: post
 
   OtpVerificationFunction:
-    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Type: AWS::Serverless::Function
     Properties:
       CodeUri: all-functions/otpverification
       Handler: otpVerification.lambdaHandler
@@ -46,7 +45,7 @@ Resources:
           COGNITO_REGION: ap-south-1
       Events:
         ApiEvent:
-          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Type: Api
           Properties:
             Path: /otpVerification
             Method: post
