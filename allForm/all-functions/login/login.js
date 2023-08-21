@@ -5,6 +5,10 @@ AWS.config.update({
 });
 const cognito = new AWS.CognitoIdentityServiceProvider();
 
+function hhh() {
+
+}
+
 async function loginUser(username, password, userPoolId, clientId) {
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     const containsEmail = emailPattern.test(username);
