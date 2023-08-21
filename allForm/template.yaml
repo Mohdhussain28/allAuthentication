@@ -21,8 +21,8 @@ Resources:
         - x86_64
       Environment:
         Variables:
-          COGNITO_USER_POOL_ID: ap-south-1_VhiXiQLiA
-          COGNITO_CLIENT_ID: 5pih5fontf2md8m74eoefnoiu
+          COGNITO_USER_POOL_ID: ap-south-1_fF3unWCgD
+          COGNITO_CLIENT_ID: 4tvgqs3qvhtpr2tq796i746kln
           COGNITO_REGION: ap-south-1
       Events:
         ApiEvent:
@@ -41,8 +41,8 @@ Resources:
         - x86_64
       Environment:
         Variables:
-          COGNITO_USER_POOL_ID: ap-south-1_VhiXiQLiA
-          COGNITO_CLIENT_ID: 5pih5fontf2md8m74eoefnoiu
+          COGNITO_USER_POOL_ID: ap-south-1_fF3unWCgD
+          COGNITO_CLIENT_ID: 4tvgqs3qvhtpr2tq796i746kln
           COGNITO_REGION: ap-south-1
       Events:
         ApiEvent:
@@ -61,8 +61,8 @@ Resources:
         - x86_64
       Environment:
         Variables:
-          COGNITO_USER_POOL_ID: ap-south-1_VhiXiQLiA
-          COGNITO_CLIENT_ID: 5pih5fontf2md8m74eoefnoiu
+          COGNITO_USER_POOL_ID: ap-south-1_fF3unWCgD
+          COGNITO_CLIENT_ID: 4tvgqs3qvhtpr2tq796i746kln
           COGNITO_REGION: ap-south-1
       Events:
         ApiEvents:

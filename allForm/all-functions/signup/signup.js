@@ -1,5 +1,5 @@
-
 const AWS = require('aws-sdk');
+const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 AWS.config.update({
     region: process.env.COGNITO_REGION
@@ -7,14 +7,14 @@ AWS.config.update({
 
 const cognito = new AWS.CognitoIdentityServiceProvider();
 
-async function signUpUser(username, password, email, userPoolId, clientId) {
+async function signUpUser(number, password, name, email, userPoolId, clientId) {
     const params = {
         ClientId: clientId,
-        Username: username,
+        Username: number,
         Password: password,
         UserAttributes: [
-            { Name: 'email', Value: email },
-            // You can add more attributes as needed
+            { Name: "name", Value: name },
+            { Name: "email", Value: email }
         ],
     };
 
@@ -30,12 +30,31 @@ async function signUpUser(username, password, email, userPoolId, clientId) {
 
 exports.lambdaHandler = async (event) => {
     const body = JSON.parse(event.body);
-    const { username, password, email } = body;
-
+    const { number, password, name, email } = body;
     try {
         const userPoolId = process.env.COGNITO_USER_POOL_ID;
         const clientId = process.env.COGNITO_CLIENT_ID;
-        const result = await signUpUser(username, password, email, userPoolId, clientId);
+        const result = await signUpUser(number, password, name, email, userPoolId, clientId);
+
+        const userId = result.UserSub
+        if (!userId) {
+            return {
+                statusCode: 404,
+                body: JSON.stringify("userID is not found")
+            }
+        }
+
+        const params = {
+            TableName: "emoease-table",
+            Item: {
+                id: userId,
+                email: email,
+                name: name,
+                number: number
+            }
+        }
+
+        await dynamodb.put(params).promise();
         return {
             statusCode: 200,
             body: JSON.stringify({ message: 'User successfully signed up', data: result }),
