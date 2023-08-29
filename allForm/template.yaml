@@ -113,7 +113,7 @@ Resources:
   ForgotPasswordFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: all-functions/
+      CodeUri: all-functions/forgotpassword
       Handler: forgotpassword.lambdaHandler
       Runtime: nodejs14.x
       Architectures:
@@ -128,4 +128,44 @@ Resources:
           Type: Api
           Properties:
             Path: /forgotpassword
+            Method: post
+
+  ConfirmForgotPasswordFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: all-functions/confirmforgotpassword
+      Handler: confirmforgotpassword.lambdaHandler
+      Runtime: nodejs14.x
+      Architectures:
+        - x86_64
+      Environment:
+        Variables:
+          COGNITO_USER_POOL_ID: ap-south-1_fF3unWCgD
+          COGNITO_CLIENT_ID: 4tvgqs3qvhtpr2tq796i746kln
+          COGNITO_REGION: ap-south-1
+      Events:
+        ApiEvents:
+          Type: Api
+          Properties:
+            Path: /confirm-forgotpassword
+            Method: post
+
+  ChangePasswordFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: all-functions/changepassword
+      Handler: changepassword.lambdaHandler
+      Runtime: nodejs14.x
+      Architectures:
+        - x86_64
+      Environment:
+        Variables:
+          COGNITO_USER_POOL_ID: ap-south-1_fF3unWCgD
+          COGNITO_CLIENT_ID: 4tvgqs3qvhtpr2tq796i746kln
+          COGNITO_REGION: ap-south-1
+      Events:
+        ApiEvents:
+          Type: Api
+          Properties:
+            Path: /changepassword
             Method: post

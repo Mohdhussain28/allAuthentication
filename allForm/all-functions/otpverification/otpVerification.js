@@ -12,6 +12,12 @@ async function verifyOTP(username, otp, userPoolId, clientId) {
         Username: username,
         ConfirmationCode: otp,
     };
+    if (!username || !otp) {
+        return {
+            statusCode: 400,
+            body: JSON.stringify({ message: "Please fill all the requirement field" })
+        }
+    }
 
     try {
         await cognito.confirmSignUp(params).promise();
